@@ -83,13 +83,21 @@ public class HuffmanCompressor implements me.theyinspire.projects.infotheory.mid
             // Get the code for that word.
             final Integer code = codes.get(word);
             // Find out how many bits the code is.
-            final int length = Integer.SIZE - Integer.numberOfLeadingZeros(code);
+            final int length = bits(code);
             // Write out those bits.
             output.write(length, code);
             output.flush();
         }
+        // Now we take that root as the basis for our encoding table.
+        long compressed = leaves.stream()
+                                .mapToLong(leaf -> bits(leaf.code()) * leaf.node().frequency())
+                                .sum();
         final byte[] bytes = stream.toByteArray();
-        return new ImmutableCompressedContent(root.frequency(), bytes.length, bytes);
+        return new ImmutableCompressedContent(root.frequency(), (long) Math.ceil(compressed / 16.), bytes);
+    }
+
+    private int bits(final Integer code) {
+        return Integer.SIZE - Integer.numberOfLeadingZeros(code);
     }
 
     private static List<HuffmanNode> leaves(HuffmanNode root) {

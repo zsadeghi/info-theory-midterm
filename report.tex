@@ -1,0 +1,90 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{Information Theory - Midterm}
+\author{Zohreh Sadeghi \thanks{University of Washington - Tacoma}}
+\begin{document}
+
+\maketitle
+
+\clearpage
+
+\tableofcontents
+
+\clearpage
+
+\section{Question 1: Entropy}
+
+The code provides entropy values for arbitrary n-grams from the text.
+
+Here are the results for uni-grams through 9-grams:
+
+\begin{itemize}
+  \item[1-gram] $2.9026942563927163$
+  \item[2-gram] $2.498656282450236$
+  \item[3-gram] $2.1573949768342944$
+  \item[4-gram] $1.7407052326538353$
+  \item[5-gram] $1.2607405525003155$
+  \item[6-gram] $0.8328141346993452$
+  \item[7-gram] $0.5178101859212683$
+  \item[8-gram] $0.3069581410914994$
+  \item[9-gram] $0.1775738447828046$
+\end{itemize}
+
+To put this into a chart, we have:
+
+
+\begin{figure}[h]
+  \includegraphics[width=\textwidth]{images/entropy.jpg}
+\end{figure}
+
+\clearpage
+
+\section{Question 2: Huffman Coding}
+
+When encoding using single characters, we get the following:
+
+\begin{itemize}
+  \item \textbf{Ratio}: $0.3225$
+  \item \textbf{Inverted ratio}: $3.1007$
+  \item \textbf{Compression time}: 611 milliseconds
+  \item \textbf{Decompression time}: 189 milliseconds
+\end{itemize}
+
+Using bigrams, we get:
+
+\begin{itemize}
+  \item \textbf{Ratio}: $0.3731$
+  \item \textbf{Inverted ratio}: $2.6802$
+  \item \textbf{Compression time}: 253 milliseconds
+  \item \textbf{Decompression time}: 144 milliseconds
+\end{itemize}
+
+Using trigrams, we get:
+
+\begin{itemize}
+  \item \textbf{Ratio}: $0.4347$
+  \item \textbf{Inverted ratio}: $2.3004$
+  \item \textbf{Compression time}: 334 milliseconds
+  \item \textbf{Decompression time}: 269 milliseconds
+\end{itemize}
+
+The inverse of the compression ration seems to be bound by the entropy of the
+text from the lower side. In other words, the entropy seems to act as a lower
+bound for the inverse of the compression ratio.
+
+\section{Question 3: Structured Tree Lempel-Ziv}
+
+When encoding using single characters as unit of lookup, we get the following:
+
+\begin{itemize}
+  \item \textbf{Ratio}: $0.2659$
+  \item \textbf{Inverted ratio}: $3.7608$
+  \item \textbf{Compression time}: 739 milliseconds
+  \item \textbf{Decompression time}: 284 milliseconds
+\end{itemize}
+
+
+\end{document}
